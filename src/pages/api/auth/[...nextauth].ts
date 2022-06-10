@@ -7,6 +7,7 @@ import { fauna } from "../../../services/fauna";
 
 export default NextAuth({
   // Configure one or more authentication providers
+  secret: process.env.NEXT_PUBLIC_SECRET,
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
@@ -19,7 +20,7 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
-  secret: process.env.NEXT_PUBLIC_SECRET,
+ 
 
   callbacks: {
 
