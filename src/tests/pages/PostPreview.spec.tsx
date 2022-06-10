@@ -38,10 +38,12 @@ describe('Post preview page', () => {
     const useRouterMocked = mocked(useRouter)
     const pushMock = jest.fn()
 
-    useSessionMocked.mockReturnValueOnce([
-      { activeSubscription: 'fake-active-subscription' },
-      false
-    ] as any)
+    useSessionMocked.mockReturnValueOnce({
+      data: { 
+        activeSubscription: 'fake-active-subscription',
+        expires: 'fake-expires'
+      },
+    } as any)
 
     useRouterMocked.mockReturnValueOnce({
       push: pushMock,
@@ -53,11 +55,8 @@ describe('Post preview page', () => {
 
   });
 
-  /*
 
   it('loads initial data', async () => {
-
-    const getSessionMocked = mocked(getSession)
 
     const getPrismicClientMocked = mocked(getPrismicClient)
 
@@ -75,13 +74,7 @@ describe('Post preview page', () => {
       })
     }as any)
 
-    getSessionMocked.mockResolvedValueOnce({
-      activeSubscription: 'fake-active-subscription'
-    } as any);
-
-    const response = await getServerSideProps({
-      params: { slug: 'my-new-post' }
-    } as any);
+    const response = await getStaticProps({ params :{slug: 'my-new-post'}});
 
     expect(response).toEqual(
       expect.objectContaining({
@@ -97,7 +90,7 @@ describe('Post preview page', () => {
       })
     )
 
-  })*/
+  })
 
 
 })

@@ -19,6 +19,8 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
+  secret: process.env.NEXT_PUBLIC_SECRET,
+
   callbacks: {
 
     async session({session}){
@@ -91,10 +93,9 @@ export default NextAuth({
 
         return true
 
-      } catch {
-
-        return false
-
+      } catch (err){
+        console.log(err)
+        return false;
       }
 
     }, 
